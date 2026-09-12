@@ -271,6 +271,29 @@
   .world .mpin, .world3d .mpin { cursor: pointer; }
   .world .mpin .tag:hover, .world3d .mpin .tag:hover, .mpin.open .tag { border-color: var(--ink); }
 
+
+  /* nib */
+  .nib { display: grid; grid-template-columns: 7rem 1fr; gap: 2rem; align-items: start; max-width: 60rem; }
+  .nib .icon { width: 7rem; height: 7rem; border-radius: 1.4rem; background: var(--ink); color: var(--paper); display: grid; place-items: center; }
+  .nib .icon svg { width: 5rem; height: 5rem; }
+  .nib p { margin: 0 0 1rem; }
+  .chat { border: 1px solid var(--rule); background: #FBFBF9; max-width: 60rem; margin: 1.5rem 0 0; }
+  .chat .msg { display: grid; grid-template-columns: 2rem 1fr; gap: .8rem; padding: .9rem 1.1rem; border-top: 1px solid var(--rule); }
+  .chat .msg:first-child { border-top: 0; }
+  .chat .msg .av { width: 2rem; height: 2rem; border-radius: .5rem; display: grid; place-items: center; font-size: .8rem; color: var(--graphite); border: 1px solid var(--rule); }
+  .chat .msg .av.n { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .chat .msg .av svg { width: 1.3rem; height: 1.3rem; }
+  .chat .msg p { margin: 0 0 .4rem; }
+  .chat .msg p:last-child { margin: 0; }
+  .chat .msg .act { display: inline-block; border: 1px solid var(--ink); border-radius: 3px; padding: .05rem .5rem; margin-right: .4rem; font-size: .9rem; }
+  .chat .you { color: var(--ink); }
+  .split2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 60rem; }
+  .split2 h3 { font-size: 1.25rem; font-weight: 600; margin: 0 0 .5rem; }
+  .split2 ul { margin: 0; padding-left: 1.1rem; }
+  .split2 li { margin: .25rem 0; }
+  .split2 li small { color: var(--graphite); }
+  @media (max-width: 720px) { .nib, .split2 { grid-template-columns: 1fr; } }
+
   @media (max-width: 720px) {
     .compare .bar, .compare .panes, dl.changes, .two { grid-template-columns: 1fr; }
     .compare .bar div + div, .compare .pane + .pane { border-left: 0; border-top: 1px solid var(--rule); }
@@ -287,6 +310,7 @@
       <a href="https://github.com/grassclaw/longhand">Plugin</a>
       <a href="https://github.com/grassclaw/scrivener-to-obsidian">Importer</a>
       <a href="https://github.com/grassclaw/longhand/blob/main/docs/spec.md">Spec</a>
+      <a href="#nib">Nib</a>
       <a href="https://github.com/grassclaw/longhand-site/tree/main/brand">Brand</a>
     </nav>
   </header>
@@ -533,6 +557,50 @@
     </div>
   </section>
 
+  <section class="feature" id="nib">
+    <h2>Meet Nib.</h2>
+    <div class="nib">
+      <div class="icon"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon points="28,10 50,10 50,60 39,76 28,60" fill="currentColor"/><circle cx="39" cy="44" r="3.5" fill="#FBFBF9"/><line x1="39" y1="47" x2="39" y2="62" stroke="#FBFBF9" stroke-width="3"/><path d="M28 86 H 86" stroke="currentColor" stroke-width="9" stroke-linecap="round"/></svg></div>
+      <div>
+        <p>Every studio has someone who knows where things are. Nib is Longhand's. It lives in the margin, knows your manuscript, and stays out of your prose. Ask it what changed in chapter four since the June draft, where Tom was last seen, which scenes still mention the tin after you cut it, or whether a synopsis still matches its scene. It answers from your files and your history, and anything it changes lands as an ordinary edit or a snapshot you can undo.</p>
+        <p>Nib is off until you turn it on. It runs on our hosted models with a subscription, or on your own key or a local model. It sends your manuscript nowhere you did not point it, and it reports nothing back to us. Nib is the one part of Longhand you pay for by the month, and it is the only part that ever will be a subscription.</p>
+      </div>
+    </div>
+    <div class="chat" aria-label="Example conversation with Nib">
+      <div class="msg"><div class="av">You</div><div><p class="you">what changed in the tin since the june snapshot?</p></div></div>
+      <div class="msg"><div class="av n"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon points="28,10 50,10 50,60 39,76 28,60" fill="currentColor"/><circle cx="39" cy="44" r="3.5" fill="#FBFBF9"/><line x1="39" y1="47" x2="39" y2="62" stroke="#FBFBF9" stroke-width="3"/><path d="M28 86 H 86" stroke="currentColor" stroke-width="9" stroke-linecap="round"/></svg></div><div><p>Two things in <em>02 The Tin</em> since “Second draft, 2 Oct 2021”: the dream sequence is gone, 412 words, and Mara now opens the tin in the kitchen instead of the yard. Tom is not mentioned in either version.</p><p><span class="act">Compare side by side</span><span class="act">Restore the dream sequence</span></p></div></div>
+      <div class="msg"><div class="av">You</div><div><p class="you">did i lose anything that other scenes depend on?</p></div></div>
+      <div class="msg"><div class="av n"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon points="28,10 50,10 50,60 39,76 28,60" fill="currentColor"/><circle cx="39" cy="44" r="3.5" fill="#FBFBF9"/><line x1="39" y1="47" x2="39" y2="62" stroke="#FBFBF9" stroke-width="3"/><path d="M28 86 H 86" stroke="currentColor" stroke-width="9" stroke-linecap="round"/></svg></div><div><p>One thing. <em>08 Last Stall</em> refers to “the dream about the buttons,” which only existed in the cut passage. Nothing else in Part One or Two points at it.</p><p><span class="act">Open 08 Last Stall at that line</span></p></div></div>
+      <div class="msg"><div class="av n"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon points="28,10 50,10 50,60 39,76 28,60" fill="currentColor"/><circle cx="39" cy="44" r="3.5" fill="#FBFBF9"/><line x1="39" y1="47" x2="39" y2="62" stroke="#FBFBF9" stroke-width="3"/><path d="M28 86 H 86" stroke="currentColor" stroke-width="9" stroke-linecap="round"/></svg></div><div><p>It looks like you're rewriting chapter four. Want the June draft beside it? That was the one joke. It will not happen again.</p></div></div>
+    </div>
+  </section>
+
+  <section class="feature">
+    <h2>What is open, and what is not.</h2>
+    <p>Anything that touches your files is open source and always will be, because nobody should trust a writing tool that can hold a manuscript hostage. What you can pay for is convenience and Nib.</p>
+    <div class="split2">
+      <div>
+        <h3>Open, MIT</h3>
+        <ul>
+          <li>The vault spec <small>the contract everything reads and writes</small></li>
+          <li>The importer <small>Scrivener in, vault and history out</small></li>
+          <li>The plugin core and its module and theme APIs</li>
+          <li>Snapshots, binder, inspector, corkboard and threads, research, cast, flat maps, targets</li>
+          <li>Themes and project templates <small>an open format; build your own, share them, sell them</small></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Paid</h3>
+        <ul>
+          <li>Nib <small>a monthly subscription, with a bring-your-own-key option</small></li>
+          <li>Compile presets <small>manuscript formats to docx, pdf, epub; a one-time licence</small></li>
+          <li>Relief maps <small>the world in three dimensions; a one-time licence</small></li>
+        </ul>
+        <p style="margin-top:1rem">Turn a paid module off and your files are untouched. There is nothing in them that only a paid module can read.</p>
+      </div>
+    </div>
+  </section>
+
   <section>
     <h2>What changes in Obsidian</h2>
     <dl class="changes">
@@ -545,6 +613,7 @@
       <div><dt>Any image becomes a map, flat or in relief.</dt><dd>Pins link places to scenes and back. Stored as frontmatter on the map's note.</dd></div>
       <div><dt>Characters track themselves.</dt><dd>A character is a note; its appearances are the scenes that link to it or name it. The cast panel reads the book so you don't have to.</dd></div>
       <div><dt>Every module has a switch.</dt><dd>One settings page. Turn off what you do not write with; nothing is stranded because every module reads the same fields.</dd></div>
+      <div><dt>Nib knows the book.</dt><dd>Ask what changed, who was where, what depends on what. Answers come from your files and history; changes land as edits you can undo.</dd></div>
     </dl>
   </section>
 
@@ -564,7 +633,7 @@ scriv2obsidian convert -out ~/Writing -git Novel.scriv</pre>
       </div>
       <div>
         <h3>The plugin</h3>
-        <p>In design and early development. The spec, the importer, the plugin core, and the Snapshots module are open source and will stay that way. Convenience modules may carry a licence later; nothing that guards your data ever will.</p>
+        <p>In design and early development. The spec, the importer, the plugin core, and every module that touches your files are open source and will stay that way. Nib and two convenience modules are paid; nothing that guards your data ever will be.</p>
         <p><a href="https://github.com/grassclaw/longhand">Follow the repo</a> to hear when there is a build to try.</p>
       </div>
     </div>
