@@ -245,9 +245,9 @@
 
 
   /* place cards */
-  .pcard { position: absolute; z-index: 5; width: 19rem; background: #FBFBF9; border: 1px solid var(--rule); box-shadow: 0 6px 18px rgba(30,36,50,.10); font-size: .95rem; pointer-events: auto; }
+  .pcard { position: absolute; z-index: 5; width: 19rem; max-height: calc(100% - 16px); overflow-y: auto; overscroll-behavior: contain; background: #FBFBF9; border: 1px solid var(--rule); box-shadow: 0 6px 18px rgba(30,36,50,.10); font-size: .95rem; pointer-events: auto; }
   .pcard[hidden] { display: none; }
-  .pcard .ph { padding: .7rem .9rem .5rem; border-bottom: 1px solid var(--rule); }
+  .pcard .ph { position: sticky; top: 0; z-index: 1; background: #FBFBF9; padding: .7rem .9rem .5rem; border-bottom: 1px solid var(--rule); }
   .pcard .ph strong { display: block; font-weight: 600; font-size: 1.05rem; }
   .pcard .ph span { color: var(--graphite); font-size: .85rem; }
   .pcard input { width: 100%; box-sizing: border-box; margin: .55rem 0 0; padding: .3rem .5rem; border: 1px solid var(--rule); background: #fff; font: inherit; font-size: .9rem; color: var(--ink); }
@@ -260,7 +260,7 @@
   .i2 { background: linear-gradient(200deg, #CFD9DD 40%, #9DB0BF); }
   .i3 { background: repeating-linear-gradient(135deg, #E6E8DE 0 6px, #D5DBC3 6px 12px); }
   .i4 { background: radial-gradient(circle at 30% 30%, #F3F4F1, #C4C9BE 70%); }
-  .pcard ul { list-style: none; margin: .5rem 0 0; padding: 0 .9rem .6rem; max-height: 9.5rem; overflow-y: auto; }
+  .pcard ul { list-style: none; margin: .5rem 0 0; padding: 0 .9rem .6rem; }
   .pcard li { padding: .45rem 0; border-top: 1px solid var(--rule); }
   .pcard li:first-child { border-top: 0; }
   .pcard li .ch { color: var(--graphite); font-size: .8rem; }
