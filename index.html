@@ -205,6 +205,42 @@
     .tl .track { height: 5.4rem; }
     .threads { grid-template-columns: 2rem repeat(3, 1fr); column-gap: .5rem; }
   }
+
+  /* world map */
+  .world { position: relative; height: 22rem; overflow: hidden; background: radial-gradient(ellipse at 60% 40%, #DDE4E6, #D3DBDE 70%); }
+  .world svg.map { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .world .mpin { position: absolute; transform: translate(-50%, -100%); }
+  .world .mpin::after { content: ""; position: absolute; left: 50%; bottom: -.45rem; width: .5rem; height: .5rem; background: var(--ink); border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 0 2px #FBFBF9; }
+  .world .mpin .tag { display: block; margin-bottom: .35rem; }
+  .world3d { position: relative; height: 24rem; overflow: hidden; background: linear-gradient(#E6EAEB, #D3DBDE); perspective: 900px; }
+  .world3d .plane { position: absolute; left: 50%; top: 58%; width: 84%; height: 84%; transform: translate(-50%, -50%) rotateX(58deg) rotateZ(-14deg); transform-style: preserve-3d; }
+  .world3d .plane svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .world3d .plane svg.under { transform: translateZ(-14px); filter: brightness(.78); }
+  .world3d .plane svg.under2 { transform: translateZ(-7px); filter: brightness(.88); }
+  .world3d .peak { position: absolute; transform-origin: 50% 100%; }
+  .world3d .stem { position: absolute; width: 2px; background: var(--ink); transform: translateX(-50%); }
+  .world3d .mpin { position: absolute; transform: translate(-50%, -100%); }
+  .world3d .mpin .tag { display: block; box-shadow: 0 1px 0 var(--rule); }
+  .world3d .mpin::after { content: ""; position: absolute; left: 50%; bottom: -.45rem; width: .5rem; height: .5rem; background: var(--ink); border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 0 2px #FBFBF9; }
+  .place { font-family: "Newsreader", Georgia, serif; font-style: italic; font-size: 11px; fill: #4F5560; }
+  .sea { font-family: "Newsreader", Georgia, serif; font-style: italic; font-size: 12px; fill: #7E8A94; letter-spacing: .12em; }
+
+  /* cast */
+  .cast { display: grid; grid-template-columns: 11rem 1fr 9rem; gap: .6rem 1.25rem; align-items: center; }
+  .cast .hd { font-size: .9rem; color: var(--graphite); padding-bottom: .4rem; border-bottom: 1px solid var(--rule); }
+  .cast .who { font-weight: 600; }
+  .cast .who small { display: block; font-weight: 400; color: var(--graphite); font-size: .85rem; }
+  .cast .strip { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; }
+  .cast .strip i { display: block; height: 1.15rem; border: 1px solid var(--rule); background: #fff; border-radius: 2px; }
+  .cast .strip i.on { background: var(--ink); border-color: var(--ink); }
+  .cast .strip i.on.red { background: #B65A52; border-color: #B65A52; }
+  .cast .strip i.on.blue { background: #4C6A9A; border-color: #4C6A9A; }
+  .cast .strip i.on.green { background: #5E8A5C; border-color: #5E8A5C; }
+  .cast .strip i.cur { box-shadow: 0 0 0 2px var(--ink); }
+  .cast .last { color: var(--graphite); font-size: .95rem; }
+  .cast .scenes { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; font-size: .7rem; color: var(--graphite); text-align: center; }
+  @media (max-width: 720px) { .cast { grid-template-columns: 1fr; } .cast .hd, .cast .last { display: none; } .world3d { height: 18rem; } }
+
   @media (max-width: 720px) {
     .compare .bar, .compare .panes, dl.changes, .two { grid-template-columns: 1fr; }
     .compare .bar div + div, .compare .pane + .pane { border-left: 0; border-top: 1px solid var(--rule); }
@@ -389,15 +425,105 @@
 
   <section class="feature">
     <h2>Pin a scene to a place.</h2>
-    <p>Any image can be a map: a hand-drawn world, a scanned town plan, a floor plan of the house. Drop a pin and link it to a scene, a character, or a note. Click the pin to open it; open the scene and see where it happens. Pins are stored on the map's own note, so the map is just a picture with frontmatter.</p>
-    <div class="panel" aria-label="Map example">
-      <div class="bar"><strong>Whitby, 1897</strong><span>Research/Map.png, 4 pins</span></div>
-      <div class="map">
-        <div class="river"></div>
-        <div class="mpin" style="left:22%; top:44%"><span class="tag">The house</span></div>
-        <div class="mpin" style="left:48%; top:70%"><span class="tag">Chapel steps</span></div>
-        <div class="mpin" style="left:66%; top:36%"><span class="tag">Winter Fair</span></div>
-        <div class="mpin" style="left:84%; top:62%"><span class="tag">The quay</span></div>
+    <p>Any image can be a map: a hand-drawn world, a scanned town plan, a floor plan of the house. Drop a pin and link it to a scene, a character, or a note. Click the pin to open it; open the scene and see where it happens. Pins are stored on the map's own note, so the map is a picture with frontmatter.</p>
+    <div class="panel" aria-label="World map, flat view">
+      <div class="bar"><strong>Harrowmere</strong><span class="axis">View <span class="on">Flat</span><span>Relief</span></span></div>
+      <div class="world">
+        <svg class="map" viewBox="0 0 800 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs>
+            <pattern id="grat" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0H0V80" fill="none" stroke="#C7D0D4" stroke-width=".6"/></pattern>
+            <pattern id="wood" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.4" fill="#A9B8A3"/><circle cx="8" cy="7" r="1.2" fill="#A9B8A3"/></pattern>
+          </defs>
+          <rect width="800" height="300" fill="url(#grat)"/>
+          <!-- continental shelf -->
+          <path d="M120 250 C 60 200, 80 120, 150 80 C 210 40, 330 20, 420 40 C 500 60, 560 40, 640 70 C 720 100, 760 160, 720 220 C 690 268, 560 290, 470 262 C 420 246, 380 268, 320 270 C 240 272, 170 290, 120 250 Z" fill="#E1E8EA"/>
+          <!-- land -->
+          <path d="M150 240 C 100 200, 110 130, 170 100 C 220 72, 330 44, 415 62 C 490 78, 550 62, 620 90 C 690 118, 720 166, 690 210 C 664 250, 560 268, 480 246 C 430 232, 390 252, 330 254 C 250 256, 190 272, 150 240 Z" fill="#E6E8DE" stroke="#BFC6B8" stroke-width="1.2"/>
+          <!-- forest -->
+          <path d="M200 180 C 190 150, 230 130, 270 140 C 300 148, 300 190, 260 200 C 230 208, 208 202, 200 180 Z" fill="url(#wood)"/>
+          <path d="M560 200 C 550 176, 590 160, 620 170 C 640 178, 634 210, 600 214 C 578 216, 566 212, 560 200 Z" fill="url(#wood)"/>
+          <!-- mountains -->
+          <g fill="#C4C9BE" stroke="#8F978B" stroke-width="1" stroke-linejoin="round">
+            <path d="M330 130 l 22 -40 l 22 40 z"/><path d="M362 126 l 26 -48 l 26 48 z"/><path d="M402 132 l 20 -36 l 20 36 z"/><path d="M440 122 l 24 -44 l 24 44 z"/><path d="M484 128 l 18 -32 l 18 32 z"/>
+          </g>
+          <g fill="#F3F4F1"><path d="M352 90 l 6 10 l -12 0 z"/><path d="M388 78 l 7 12 l -14 0 z"/><path d="M464 78 l 6 11 l -12 0 z"/></g>
+          <!-- river -->
+          <path d="M392 128 C 380 160, 400 190, 380 215 C 366 232, 340 240, 330 254" fill="none" stroke="#9DB0BF" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M392 128 C 410 150, 440 165, 470 190 C 486 204, 480 230, 480 246" fill="none" stroke="#9DB0BF" stroke-width="1.8" stroke-linecap="round"/>
+          <!-- lake -->
+          <ellipse cx="640" cy="150" rx="26" ry="14" fill="#CFD9DD" stroke="#A9B9C1" stroke-width="1"/>
+          <!-- roads -->
+          <path d="M215 220 C 260 214, 300 230, 340 232 C 400 236, 440 230, 486 240 C 540 252, 600 236, 655 220" fill="none" stroke="#B8B2A4" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <!-- labels -->
+          <text class="sea" x="60" y="60">The Grey Reach</text>
+          <text class="sea" x="600" y="280">Southern Sea</text>
+          <text class="place" x="300" y="70">The Saltback Mountains</text>
+          <text class="place" x="196" y="222">Harrow Wood</text>
+          <text class="place" x="612" y="132">Stillwater</text>
+          <text class="place" x="356" y="262">Whitby</text>
+          <text class="place" x="230" y="150">Dolshorn Fields</text>
+        </svg>
+        <div class="mpin" style="left:27%; top:74%"><span class="tag">The house</span></div>
+        <div class="mpin" style="left:45%; top:86%"><span class="tag">Chapel steps</span></div>
+        <div class="mpin" style="left:58%; top:44%"><span class="tag">Winter Fair</span></div>
+        <div class="mpin" style="left:80%; top:52%"><span class="tag">Stillwater crossing</span></div>
+      </div>
+    </div>
+    <p style="margin-top:1.5rem">The same map in relief. Give Longhand a heightmap, a model, or an export from a map generator and the world stands up: mountains rise, the coast drops to the sea, and the same pins stay where you put them. Fly around it, click a pin, land in the scene. Desktop only; the flat map is the fallback everywhere else.</p>
+    <div class="panel" aria-label="World map, relief view">
+      <div class="bar"><strong>Harrowmere</strong><span class="axis">View <span>Flat</span><span class="on">Relief</span></span></div>
+      <div class="world3d">
+        <div class="plane">
+          <svg class="under" viewBox="0 0 800 300" preserveAspectRatio="none" aria-hidden="true"><path d="M150 240 C 100 200, 110 130, 170 100 C 220 72, 330 44, 415 62 C 490 78, 550 62, 620 90 C 690 118, 720 166, 690 210 C 664 250, 560 268, 480 246 C 430 232, 390 252, 330 254 C 250 256, 190 272, 150 240 Z" fill="#B7BCB1"/></svg>
+          <svg class="under2" viewBox="0 0 800 300" preserveAspectRatio="none" aria-hidden="true"><path d="M150 240 C 100 200, 110 130, 170 100 C 220 72, 330 44, 415 62 C 490 78, 550 62, 620 90 C 690 118, 720 166, 690 210 C 664 250, 560 268, 480 246 C 430 232, 390 252, 330 254 C 250 256, 190 272, 150 240 Z" fill="#CDD1C6"/></svg>
+          <svg viewBox="0 0 800 300" preserveAspectRatio="none" aria-hidden="true">
+            <defs><pattern id="wood2" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.4" fill="#A9B8A3"/><circle cx="8" cy="7" r="1.2" fill="#A9B8A3"/></pattern></defs>
+            <path d="M120 250 C 60 200, 80 120, 150 80 C 210 40, 330 20, 420 40 C 500 60, 560 40, 640 70 C 720 100, 760 160, 720 220 C 690 268, 560 290, 470 262 C 420 246, 380 268, 320 270 C 240 272, 170 290, 120 250 Z" fill="#DCE4E6"/>
+            <path d="M150 240 C 100 200, 110 130, 170 100 C 220 72, 330 44, 415 62 C 490 78, 550 62, 620 90 C 690 118, 720 166, 690 210 C 664 250, 560 268, 480 246 C 430 232, 390 252, 330 254 C 250 256, 190 272, 150 240 Z" fill="#E6E8DE" stroke="#BFC6B8" stroke-width="1.2"/>
+            <path d="M200 180 C 190 150, 230 130, 270 140 C 300 148, 300 190, 260 200 C 230 208, 208 202, 200 180 Z" fill="url(#wood2)"/>
+            <path d="M560 200 C 550 176, 590 160, 620 170 C 640 178, 634 210, 600 214 C 578 216, 566 212, 560 200 Z" fill="url(#wood2)"/>
+            <path d="M392 128 C 380 160, 400 190, 380 215 C 366 232, 340 240, 330 254" fill="none" stroke="#9DB0BF" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M392 128 C 410 150, 440 165, 470 190 C 486 204, 480 230, 480 246" fill="none" stroke="#9DB0BF" stroke-width="1.8" stroke-linecap="round"/>
+            <ellipse cx="640" cy="150" rx="26" ry="14" fill="#CFD9DD"/>
+            <path d="M215 220 C 260 214, 300 230, 340 232 C 400 236, 440 230, 486 240 C 540 252, 600 236, 655 220" fill="none" stroke="#B8B2A4" stroke-width="1.2" stroke-dasharray="4 3"/>
+          </svg>
+        </div>
+        <!-- peaks standing up out of the plane -->
+        <svg class="peak" style="left:41%; top:8%; width:9rem; height:6rem" viewBox="0 0 140 90" aria-hidden="true">
+          <g stroke="#8F978B" stroke-width="1" stroke-linejoin="round">
+            <path d="M6 88 l 22 -52 l 22 52 z" fill="#C4C9BE"/><path d="M28 36 l 22 52 l -22 0 z" fill="#A9AFA4"/>
+            <path d="M44 88 l 26 -66 l 26 66 z" fill="#C4C9BE"/><path d="M70 22 l 26 66 l -26 0 z" fill="#A9AFA4"/>
+            <path d="M90 88 l 20 -44 l 20 44 z" fill="#C4C9BE"/><path d="M110 44 l 20 44 l -20 0 z" fill="#A9AFA4"/>
+          </g>
+          <g fill="#F3F4F1"><path d="M28 36 l 5 10 l -10 0 z"/><path d="M70 22 l 6 12 l -12 0 z"/></g>
+        </svg>
+        <div class="stem" style="left:30%; top:52%; height:3.2rem"></div><div class="mpin" style="left:30%; top:52%"><span class="tag">The house</span></div>
+        <div class="stem" style="left:46%; top:66%; height:3rem"></div><div class="mpin" style="left:46%; top:66%"><span class="tag">Chapel steps</span></div>
+        <div class="stem" style="left:60%; top:40%; height:3.4rem"></div><div class="mpin" style="left:60%; top:40%"><span class="tag">Winter Fair</span></div>
+        <div class="stem" style="left:79%; top:46%; height:3rem"></div><div class="mpin" style="left:79%; top:46%"><span class="tag">Stillwater crossing</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature">
+    <h2>Keep track of who is where.</h2>
+    <p>A character is a note. Scrivener gives you a sheet to fill in; Longhand gives you the sheet and then reads the manuscript for you. Every scene that links to the character, or mentions a name or alias you have approved, counts as an appearance. The cast panel shows each character across the book in manuscript order, where they were last seen, and which thread they carry on the corkboard. Click a cell to open the scene. Nothing is typed twice: the sheet is frontmatter, the appearances are links.</p>
+    <div class="panel" aria-label="Cast panel example">
+      <div class="bar"><strong>Cast</strong><span>Part One, 12 scenes</span></div>
+      <div class="body cast">
+        <div class="hd">Character</div><div class="hd scenes"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div><div class="hd">Last seen</div>
+        <div class="who"><i class="lab red"></i>Mara<small>also "the Harrow girl"</small></div>
+        <div class="strip"><i class="on red"></i><i class="on red"></i><i class="on red"></i><i></i><i class="on red cur"></i><i class="on red"></i><i></i><i class="on red"></i><i class="on red"></i><i></i><i class="on red"></i><i class="on red"></i></div>
+        <div class="last">Return, scene 12</div>
+        <div class="who"><i class="lab blue"></i>Tom<small>also "Tomas Wray"</small></div>
+        <div class="strip"><i></i><i></i><i class="on blue"></i><i class="on blue"></i><i class="on blue cur"></i><i></i><i></i><i class="on blue"></i><i></i><i></i><i class="on blue"></i><i></i></div>
+        <div class="last">Flood, scene 11</div>
+        <div class="who"><i class="lab green"></i>Reverend Ashe<small>Whitby</small></div>
+        <div class="strip"><i></i><i class="on green"></i><i></i><i></i><i class="cur"></i><i class="on green"></i><i class="on green"></i><i></i><i></i><i class="on green"></i><i></i><i></i></div>
+        <div class="last">Stillwater, scene 10</div>
+        <div class="who"><i class="lab yellow"></i>Mother<small>never named</small></div>
+        <div class="strip"><i class="on"></i><i></i><i></i><i></i><i class="cur"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i></div>
+        <div class="last">Return, scene 12</div>
       </div>
     </div>
   </section>
@@ -411,7 +537,8 @@
       <div><dt>Three plugins become one board.</dt><dd>Grid, kanban columns, and label threads are arrangements of the same cards, reading the same synopsis, label, status, and date fields.</dd></div>
       <div><dt>Research stays with the scene.</dt><dd>PDFs, images, and notes attached to the document you have open. Highlights link back.</dd></div>
       <div><dt>Compile means a manuscript.</dt><dd>Presets for short story, novel, poem, essay. Docx, pdf, epub, or Markdown. Your files are untouched.</dd></div>
-      <div><dt>Any image becomes a map.</dt><dd>Pins link places to scenes and back. Stored as frontmatter on the map's note.</dd></div>
+      <div><dt>Any image becomes a map, flat or in relief.</dt><dd>Pins link places to scenes and back. Stored as frontmatter on the map's note.</dd></div>
+      <div><dt>Characters track themselves.</dt><dd>A character is a note; its appearances are the scenes that link to it or name it. The cast panel reads the book so you don't have to.</dd></div>
       <div><dt>Every module has a switch.</dt><dd>One settings page. Turn off what you do not write with; nothing is stranded because every module reads the same fields.</dd></div>
     </dl>
   </section>
