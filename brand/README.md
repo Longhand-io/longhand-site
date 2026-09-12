@@ -16,7 +16,7 @@ A cursive ℓ drawn in one stroke with round ends, ending in a small flourish. I
 | `logo/longhand-lockup.svg` | Mark plus wordmark, ink. The wordmark is live text set in Newsreader with Georgia fallback; convert to outlines before sending to print. |
 | `logo/longhand-lockup-paper.svg` | Same, for dark grounds. |
 | `logo/quill-mark.svg`, `logo/quill-tile.svg` | Reserved for the Longhand assistant, the in-vault AI helper, if and when it ships. A pen nib over a line of writing. Not a substitute for the mark; never use it to represent Longhand itself. |
-| `social/social-preview.png` | 1280 by 640 GitHub social preview. Rendered from `social-preview.svg`; the rendered copy used the fallback serif, so re-export from a browser with Newsreader loaded if it matters. |
+| `social/social-preview.png` | 1280 by 640 social preview for GitHub repos and link unfurls. Rendered from `social-preview.html` with headless Chrome so Newsreader is real: `chrome --headless=new --window-size=1280,640 --virtual-time-budget=8000 --screenshot=social-preview.png social-preview.html`. |
 
 Clear space around the mark: at least the width of the loop on every side. Never stretch it, outline it, add a shadow, or set it in any colour other than ink or paper.
 
