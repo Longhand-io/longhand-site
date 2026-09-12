@@ -4,16 +4,18 @@ Everything needed to represent Longhand consistently. Use the files here rather 
 
 ## The mark
 
-A single cursive ℓ, drawn in one stroke with round ends. It is the first letter of the name written the way the name describes: by hand, in full. It works from 16 pixels up and needs no container.
+A cursive ℓ drawn in one stroke with round ends, ending in a small flourish. It is the first letter of the name written the way the name describes: by hand, in full. It works from 16 pixels up and needs no container. Chosen 2026-09-11 from the rounds kept in `exploration/`.
 
 | File | Use |
 |---|---|
 | `logo/longhand-mark.svg` | The mark in ink on any light ground. |
 | `logo/longhand-mark-paper.svg` | The mark in paper colour for dark grounds. |
 | `logo/longhand-tile.svg` | The mark on a rounded ink tile. App icons, avatars, favicons at 32 px and up. |
+| `logo/longhand-tile-paper.svg` | The tile in paper with a hairline, for light grounds. |
 | `logo/favicon.svg` | Heavier stroke on the tile, for 16 to 32 px. |
 | `logo/longhand-lockup.svg` | Mark plus wordmark, ink. The wordmark is live text set in Newsreader with Georgia fallback; convert to outlines before sending to print. |
 | `logo/longhand-lockup-paper.svg` | Same, for dark grounds. |
+| `logo/quill-mark.svg`, `logo/quill-tile.svg` | Reserved for the Longhand assistant, the in-vault AI helper, if and when it ships. A pen nib over a line of writing. Not a substitute for the mark; never use it to represent Longhand itself. |
 | `social/social-preview.png` | 1280 by 640 GitHub social preview. Rendered from `social-preview.svg`; the rendered copy used the fallback serif, so re-export from a browser with Newsreader loaded if it matters. |
 
 Clear space around the mark: at least the width of the loop on every side. Never stretch it, outline it, add a shadow, or set it in any colour other than ink or paper.
