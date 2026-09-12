@@ -212,16 +212,17 @@
   .world .mpin { position: absolute; transform: translate(-50%, -100%); }
   .world .mpin::after { content: ""; position: absolute; left: 50%; bottom: -.45rem; width: .5rem; height: .5rem; background: var(--ink); border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 0 2px #FBFBF9; }
   .world .mpin .tag { display: block; margin-bottom: .35rem; }
-  .world3d { position: relative; height: 24rem; overflow: hidden; background: linear-gradient(#E6EAEB, #D3DBDE); perspective: 900px; }
-  .world3d .plane { position: absolute; left: 50%; top: 58%; width: 84%; height: 84%; transform: translate(-50%, -50%) rotateX(58deg) rotateZ(-14deg); transform-style: preserve-3d; }
-  .world3d .plane svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .world3d .plane svg.under { transform: translateZ(-14px); filter: brightness(.78); }
-  .world3d .plane svg.under2 { transform: translateZ(-7px); filter: brightness(.88); }
-  .world3d .peak { position: absolute; transform-origin: 50% 100%; }
-  .world3d .stem { position: absolute; width: 2px; background: var(--ink); transform: translateX(-50%); }
-  .world3d .mpin { position: absolute; transform: translate(-50%, -100%); }
+  .world3d { position: relative; height: 26rem; overflow: hidden; background: linear-gradient(#E9EDEE, #D3DBDE); cursor: grab; touch-action: none; }
+  .world3d:active { cursor: grabbing; }
+  .world3d canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .world3d .pins3d { position: absolute; inset: 0; pointer-events: none; }
+  .world3d .mpin { position: absolute; transform: translate(-50%, -100%); pointer-events: auto; cursor: pointer; }
   .world3d .mpin .tag { display: block; box-shadow: 0 1px 0 var(--rule); }
-  .world3d .mpin::after { content: ""; position: absolute; left: 50%; bottom: -.45rem; width: .5rem; height: .5rem; background: var(--ink); border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 0 2px #FBFBF9; }
+  .world3d .mpin .stem { display: block; width: 2px; height: 26px; background: var(--ink); margin: 0 auto; }
+  .world3d .mpin::after { content: ""; position: absolute; left: 50%; bottom: -.28rem; width: .5rem; height: .5rem; background: var(--ink); border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 0 2px #FBFBF9; }
+  .world3d .mpin.hidden { display: none; }
+  .world3d .nowebgl { position: absolute; inset: auto 1.25rem 1rem; margin: 0; color: var(--graphite); }
+  .axis .hint { border: 0; background: transparent; color: var(--graphite); padding: 0; margin-right: .5rem; }
   .place { font-family: "Newsreader", Georgia, serif; font-style: italic; font-size: 11px; fill: #4F5560; }
   .sea { font-family: "Newsreader", Georgia, serif; font-style: italic; font-size: 12px; fill: #7E8A94; letter-spacing: .12em; }
 
@@ -469,38 +470,13 @@
         <div class="mpin" style="left:80%; top:52%"><span class="tag">Stillwater crossing</span></div>
       </div>
     </div>
-    <p style="margin-top:1.5rem">The same map in relief. Give Longhand a heightmap, a model, or an export from a map generator and the world stands up: mountains rise, the coast drops to the sea, and the same pins stay where you put them. Fly around it, click a pin, land in the scene. Desktop only; the flat map is the fallback everywhere else.</p>
+    <p style="margin-top:1.5rem">The same map in relief, and this one is real: drag it. Give Longhand a heightmap, a model, or an export from a map generator and the world stands up. Orbit with a drag, zoom with the wheel, click a pin to land in its scene, drag a pin to move it and the coordinates update in the note. An Obsidian view is a full browser surface, so all of that works inside the vault on desktop. The flat map is the fallback on mobile.</p>
     <div class="panel" aria-label="World map, relief view">
-      <div class="bar"><strong>Harrowmere</strong><span class="axis">View <span>Flat</span><span class="on">Relief</span></span></div>
-      <div class="world3d">
-        <div class="plane">
-          <svg class="under" viewBox="0 0 800 300" preserveAspectRatio="none" aria-hidden="true"><path d="M150 240 C 100 200, 110 130, 170 100 C 220 72, 330 44, 415 62 C 490 78, 550 62, 620 90 C 690 118, 720 166, 690 210 C 664 250, 560 268, 480 246 C 430 232, 390 252, 330 254 C 250 256, 190 272, 150 240 Z" fill="#B7BCB1"/></svg>
-          <svg class="under2" viewBox="0 0 800 300" preserveAspectRatio="none" aria-hidden="true"><path d="M150 240 C 100 200, 110 130, 170 100 C 220 72, 330 44, 415 62 C 490 78, 550 62, 620 90 C 690 118, 720 166, 690 210 C 664 250, 560 268, 480 246 C 430 232, 390 252, 330 254 C 250 256, 190 272, 150 240 Z" fill="#CDD1C6"/></svg>
-          <svg viewBox="0 0 800 300" preserveAspectRatio="none" aria-hidden="true">
-            <defs><pattern id="wood2" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.4" fill="#A9B8A3"/><circle cx="8" cy="7" r="1.2" fill="#A9B8A3"/></pattern></defs>
-            <path d="M120 250 C 60 200, 80 120, 150 80 C 210 40, 330 20, 420 40 C 500 60, 560 40, 640 70 C 720 100, 760 160, 720 220 C 690 268, 560 290, 470 262 C 420 246, 380 268, 320 270 C 240 272, 170 290, 120 250 Z" fill="#DCE4E6"/>
-            <path d="M150 240 C 100 200, 110 130, 170 100 C 220 72, 330 44, 415 62 C 490 78, 550 62, 620 90 C 690 118, 720 166, 690 210 C 664 250, 560 268, 480 246 C 430 232, 390 252, 330 254 C 250 256, 190 272, 150 240 Z" fill="#E6E8DE" stroke="#BFC6B8" stroke-width="1.2"/>
-            <path d="M200 180 C 190 150, 230 130, 270 140 C 300 148, 300 190, 260 200 C 230 208, 208 202, 200 180 Z" fill="url(#wood2)"/>
-            <path d="M560 200 C 550 176, 590 160, 620 170 C 640 178, 634 210, 600 214 C 578 216, 566 212, 560 200 Z" fill="url(#wood2)"/>
-            <path d="M392 128 C 380 160, 400 190, 380 215 C 366 232, 340 240, 330 254" fill="none" stroke="#9DB0BF" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M392 128 C 410 150, 440 165, 470 190 C 486 204, 480 230, 480 246" fill="none" stroke="#9DB0BF" stroke-width="1.8" stroke-linecap="round"/>
-            <ellipse cx="640" cy="150" rx="26" ry="14" fill="#CFD9DD"/>
-            <path d="M215 220 C 260 214, 300 230, 340 232 C 400 236, 440 230, 486 240 C 540 252, 600 236, 655 220" fill="none" stroke="#B8B2A4" stroke-width="1.2" stroke-dasharray="4 3"/>
-          </svg>
-        </div>
-        <!-- peaks standing up out of the plane -->
-        <svg class="peak" style="left:44%; top:26%; width:8.5rem; height:5.6rem" viewBox="0 0 140 90" aria-hidden="true">
-          <g stroke="#8F978B" stroke-width="1" stroke-linejoin="round">
-            <path d="M6 88 l 22 -52 l 22 52 z" fill="#C4C9BE"/><path d="M28 36 l 22 52 l -22 0 z" fill="#A9AFA4"/>
-            <path d="M44 88 l 26 -66 l 26 66 z" fill="#C4C9BE"/><path d="M70 22 l 26 66 l -26 0 z" fill="#A9AFA4"/>
-            <path d="M90 88 l 20 -44 l 20 44 z" fill="#C4C9BE"/><path d="M110 44 l 20 44 l -20 0 z" fill="#A9AFA4"/>
-          </g>
-          <g fill="#F3F4F1"><path d="M28 36 l 5 10 l -10 0 z"/><path d="M70 22 l 6 12 l -12 0 z"/></g>
-        </svg>
-        <div class="stem" style="left:30%; top:52%; height:3.2rem"></div><div class="mpin" style="left:30%; top:52%"><span class="tag">The house</span></div>
-        <div class="stem" style="left:46%; top:66%; height:3rem"></div><div class="mpin" style="left:46%; top:66%"><span class="tag">Chapel steps</span></div>
-        <div class="stem" style="left:60%; top:40%; height:3.4rem"></div><div class="mpin" style="left:60%; top:40%"><span class="tag">Winter Fair</span></div>
-        <div class="stem" style="left:79%; top:46%; height:3rem"></div><div class="mpin" style="left:79%; top:46%"><span class="tag">Stillwater crossing</span></div>
+      <div class="bar"><strong>Harrowmere</strong><span class="axis"><span class="hint">Drag to orbit, scroll to zoom</span> View <span>Flat</span><span class="on">Relief</span></span></div>
+      <div class="world3d" id="relief">
+        <canvas id="relief-canvas" aria-label="Relief map of Harrowmere. Drag to orbit."></canvas>
+        <div class="pins3d" id="relief-pins"></div>
+        <p class="nowebgl" id="relief-fallback" hidden>This browser has no WebGL. The flat map above shows the same pins.</p>
       </div>
     </div>
   </section>
@@ -575,6 +551,115 @@ scriv2obsidian convert -out ~/Writing -git Novel.scriv</pre>
     if (reduce) { el.classList.remove('quiet'); return; }
     window.setTimeout(function () { el.classList.remove('quiet'); }, 650);
   })();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  var host = document.getElementById('relief');
+  var canvas = document.getElementById('relief-canvas');
+  var pinLayer = document.getElementById('relief-pins');
+  if (!window.THREE || !window.WebGLRenderingContext) { document.getElementById('relief-fallback').hidden = false; return; }
+  var renderer;
+  try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true }); }
+  catch (e) { document.getElementById('relief-fallback').hidden = false; return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+  // value noise
+  function hash(x, y) { var n = Math.sin(x * 127.1 + y * 311.7) * 43758.5453; return n - Math.floor(n); }
+  function smooth(t) { return t * t * (3 - 2 * t); }
+  function noise(x, y) {
+    var xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
+    var a = hash(xi, yi), b = hash(xi + 1, yi), c = hash(xi, yi + 1), d = hash(xi + 1, yi + 1);
+    var u = smooth(xf), v = smooth(yf);
+    return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
+  }
+  function fbm(x, y) { var s = 0, amp = 0.5, f = 1; for (var i = 0; i < 5; i++) { s += amp * noise(x * f, y * f); amp *= 0.5; f *= 2.1; } return s; }
+  // island height in world units; x,z in [-1,1]
+  function height(x, z) {
+    var r = Math.sqrt((x * 1.05) * (x * 1.05) + (z * 1.5) * (z * 1.5));
+    var island = Math.max(0, 1 - r * r * 0.95);
+    var n = fbm(x * 2.2 + 3.1, z * 2.2 + 7.3);
+    var ridge = Math.exp(-Math.pow((z + 0.28 - 0.25 * Math.sin(x * 2.4)) * 3.2, 2)) * Math.max(0, 1 - Math.abs(x) * 1.3);
+    var h = island * (0.55 * n + 0.15) + ridge * island * 1.15 * (0.6 + 0.6 * n);
+    return (h - 0.22) * 34;
+  }
+
+  var scene = new THREE.Scene();
+  scene.fog = new THREE.Fog(0xDCE3E6, 140, 320);
+  var camera = new THREE.PerspectiveCamera(38, 2, 1, 600);
+  var SIZE = 160, SEG = 140;
+  var geo = new THREE.PlaneGeometry(SIZE, SIZE, SEG, SEG);
+  geo.rotateX(-Math.PI / 2);
+  var pos = geo.attributes.position, colors = [];
+  var cSea = new THREE.Color(0xC4CFD3), cSand = new THREE.Color(0xDCD8C4), cLand = new THREE.Color(0xE1E4D6), cGrass = new THREE.Color(0xC6D0BE), cRock = new THREE.Color(0xB5BBAF), cSnow = new THREE.Color(0xF3F4F1);
+  for (var i = 0; i < pos.count; i++) {
+    var x = pos.getX(i), z = pos.getZ(i);
+    var y = height(x / (SIZE / 2), z / (SIZE / 2));
+    pos.setY(i, y);
+    var c;
+    if (y < -0.5) c = cSea; else if (y < 1.2) c = cSand; else if (y < 6) c = cLand.clone().lerp(cGrass, (y - 1.2) / 4.8); else if (y < 14) c = cGrass.clone().lerp(cRock, (y - 6) / 8); else c = cRock.clone().lerp(cSnow, Math.min(1, (y - 14) / 6));
+    colors.push(c.r, c.g, c.b);
+  }
+  geo.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+  geo.computeVertexNormals();
+  var land = new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ vertexColors: true, flatShading: true }));
+  scene.add(land);
+  var water = new THREE.Mesh(new THREE.PlaneGeometry(SIZE * 1.6, SIZE * 1.6), new THREE.MeshLambertMaterial({ color: 0xC9D6DB, transparent: true, opacity: 0.92 }));
+  water.rotation.x = -Math.PI / 2; water.position.y = 0; scene.add(water);
+  scene.add(new THREE.HemisphereLight(0xF3F4F1, 0xB9BFB3, 0.85));
+  var sun = new THREE.DirectionalLight(0xFFF6E8, 0.75); sun.position.set(-60, 90, 40); scene.add(sun);
+
+  // pins: normalised coordinates on the same map as the flat view
+  var pins = [
+    { name: 'The house', x: -0.46, z: 0.42 },
+    { name: 'Chapel steps', x: -0.10, z: 0.62 },
+    { name: 'Winter Fair', x: 0.16, z: -0.02 },
+    { name: 'Stillwater crossing', x: 0.60, z: 0.10 }
+  ];
+  pins.forEach(function (p) {
+    p.world = new THREE.Vector3(p.x * SIZE / 2, Math.max(0.5, height(p.x, p.z)) + 0.5, p.z * SIZE / 2);
+    var el = document.createElement('div'); el.className = 'mpin';
+    el.innerHTML = '<span class="tag">' + p.name + '</span><span class="stem"></span>';
+    el.addEventListener('click', function () { el.querySelector('.tag').style.borderColor = '#1E2432'; });
+    pinLayer.appendChild(el); p.el = el;
+  });
+
+  // orbit
+  var theta = -0.35, phi = 0.95, radius = 190, target = new THREE.Vector3(0, 4, 0);
+  var dragging = false, lastX = 0, lastY = 0, interacted = false;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  host.addEventListener('pointerdown', function (e) { dragging = true; interacted = true; lastX = e.clientX; lastY = e.clientY; host.setPointerCapture(e.pointerId); });
+  host.addEventListener('pointermove', function (e) { if (!dragging) return; theta -= (e.clientX - lastX) * 0.006; phi -= (e.clientY - lastY) * 0.005; phi = Math.max(0.35, Math.min(1.35, phi)); lastX = e.clientX; lastY = e.clientY; });
+  host.addEventListener('pointerup', function () { dragging = false; });
+  host.addEventListener('pointercancel', function () { dragging = false; });
+  host.addEventListener('wheel', function (e) { e.preventDefault(); interacted = true; radius = Math.max(90, Math.min(320, radius + e.deltaY * 0.25)); }, { passive: false });
+
+  function resize() {
+    var w = host.clientWidth, h = host.clientHeight;
+    if (canvas.width !== Math.floor(w * renderer.getPixelRatio()) || canvas.height !== Math.floor(h * renderer.getPixelRatio())) {
+      renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+    }
+  }
+  var v = new THREE.Vector3();
+  function frame() {
+    resize();
+    if (!interacted && !reduce) theta += 0.0012;
+    camera.position.set(target.x + radius * Math.sin(phi) * Math.sin(theta), target.y + radius * Math.cos(phi), target.z + radius * Math.sin(phi) * Math.cos(theta));
+    camera.lookAt(target);
+    renderer.render(scene, camera);
+    var w = host.clientWidth, h = host.clientHeight;
+    pins.forEach(function (p) {
+      v.copy(p.world).project(camera);
+      if (v.z > 1) { p.el.classList.add('hidden'); return; }
+      p.el.classList.remove('hidden');
+      p.el.style.left = ((v.x + 1) / 2 * w) + 'px';
+      p.el.style.top = ((1 - v.y) / 2 * h) + 'px';
+    });
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
 </script>
 </body>
 </html>
