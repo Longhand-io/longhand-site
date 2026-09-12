@@ -216,6 +216,7 @@
   .world3d:active { cursor: grabbing; }
   .world3d canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
   .world3d .pins3d { position: absolute; inset: 0; pointer-events: none; }
+  .world3d .pins3d .pcard { pointer-events: auto; }
   .world3d .mpin { position: absolute; transform: translate(-50%, -100%); pointer-events: auto; cursor: pointer; }
   .world3d .mpin .tag { display: block; box-shadow: 0 1px 0 var(--rule); }
   .world3d .mpin .stem { display: block; width: 2px; height: 26px; background: var(--ink); margin: 0 auto; }
@@ -241,6 +242,34 @@
   .cast .last { color: var(--graphite); font-size: .95rem; }
   .cast .scenes { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; font-size: .7rem; color: var(--graphite); text-align: center; }
   @media (max-width: 720px) { .cast { grid-template-columns: 1fr; } .cast .hd, .cast .last { display: none; } .world3d { height: 18rem; } }
+
+
+  /* place cards */
+  .pcard { position: absolute; z-index: 5; width: 19rem; background: #FBFBF9; border: 1px solid var(--rule); box-shadow: 0 6px 18px rgba(30,36,50,.10); font-size: .95rem; pointer-events: auto; }
+  .pcard[hidden] { display: none; }
+  .pcard .ph { padding: .7rem .9rem .5rem; border-bottom: 1px solid var(--rule); }
+  .pcard .ph strong { display: block; font-weight: 600; font-size: 1.05rem; }
+  .pcard .ph span { color: var(--graphite); font-size: .85rem; }
+  .pcard input { width: 100%; box-sizing: border-box; margin: .55rem 0 0; padding: .3rem .5rem; border: 1px solid var(--rule); background: #fff; font: inherit; font-size: .9rem; color: var(--ink); }
+  .pcard input:focus { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .pcard .imgs { display: flex; gap: .4rem; padding: .6rem .9rem 0; overflow-x: auto; }
+  .pcard .imgs figure { margin: 0; flex: 0 0 5.2rem; }
+  .pcard .imgs .ph-img { height: 3.4rem; border: 1px solid var(--rule); border-radius: 2px; }
+  .pcard .imgs figcaption { font-size: .72rem; color: var(--graphite); margin-top: .2rem; line-height: 1.2; }
+  .i1 { background: linear-gradient(160deg, #D7DACF, #B9BFB3); }
+  .i2 { background: linear-gradient(200deg, #CFD9DD 40%, #9DB0BF); }
+  .i3 { background: repeating-linear-gradient(135deg, #E6E8DE 0 6px, #D5DBC3 6px 12px); }
+  .i4 { background: radial-gradient(circle at 30% 30%, #F3F4F1, #C4C9BE 70%); }
+  .pcard ul { list-style: none; margin: .5rem 0 0; padding: 0 .9rem .6rem; max-height: 9.5rem; overflow-y: auto; }
+  .pcard li { padding: .45rem 0; border-top: 1px solid var(--rule); }
+  .pcard li:first-child { border-top: 0; }
+  .pcard li .ch { color: var(--graphite); font-size: .8rem; }
+  .pcard li .ti { font-weight: 600; }
+  .pcard li .ex { color: var(--graphite); font-size: .88rem; }
+  .pcard li .ex mark { background: var(--added-wash); color: inherit; }
+  .pcard .none { color: var(--graphite); padding: .5rem .9rem .7rem; }
+  .world .mpin, .world3d .mpin { cursor: pointer; }
+  .world .mpin .tag:hover, .world3d .mpin .tag:hover, .mpin.open .tag { border-color: var(--ink); }
 
   @media (max-width: 720px) {
     .compare .bar, .compare .panes, dl.changes, .two { grid-template-columns: 1fr; }
@@ -426,7 +455,7 @@
 
   <section class="feature">
     <h2>Pin a scene to a place.</h2>
-    <p>Any image can be a map: a hand-drawn world, a scanned town plan, a floor plan of the house. Drop a pin and link it to a scene, a character, or a note. Click the pin to open it; open the scene and see where it happens. Pins are stored on the map's own note, so the map is a picture with frontmatter.</p>
+    <p>Any image can be a map: a hand-drawn world, a scanned town plan, a floor plan of the house. Drop a pin and link it to a place, a scene, or a character. A place is a note, like a character, so Longhand knows where it appears: hover a pin and you get the chapters and scenes set there, the line that names it, the images you pinned for inspiration, and a search box for when a place carries half the book. Click a scene to open it. Pins are stored on the map's own note, so the map is a picture with frontmatter.</p>
     <div class="panel" aria-label="World map, flat view">
       <div class="bar"><strong>Harrowmere</strong><span class="axis">View <span class="on">Flat</span><span>Relief</span></span></div>
       <div class="world">
@@ -464,10 +493,10 @@
           <text class="place" x="356" y="262">Whitby</text>
           <text class="place" x="230" y="150">Dolshorn Fields</text>
         </svg>
-        <div class="mpin" style="left:27%; top:74%"><span class="tag">The house</span></div>
-        <div class="mpin" style="left:45%; top:86%"><span class="tag">Chapel steps</span></div>
-        <div class="mpin" style="left:58%; top:44%"><span class="tag">Winter Fair</span></div>
-        <div class="mpin" style="left:80%; top:52%"><span class="tag">Stillwater crossing</span></div>
+        <div class="mpin" data-place="house" style="left:27%; top:74%" tabindex="0"><span class="tag">The house</span></div>
+        <div class="mpin" data-place="chapel" style="left:45%; top:86%" tabindex="0"><span class="tag">Chapel steps</span></div>
+        <div class="mpin" data-place="fair" style="left:58%; top:44%" tabindex="0"><span class="tag">Winter Fair</span></div>
+        <div class="mpin" data-place="stillwater" style="left:80%; top:52%" tabindex="0"><span class="tag">Stillwater crossing</span></div>
       </div>
     </div>
     <p style="margin-top:1.5rem">The same map in relief, and this one is real: drag it. Give Longhand a heightmap, a model, or an export from a map generator and the world stands up. Orbit with a drag, zoom with the wheel, click a pin to land in its scene, drag a pin to move it and the coordinates update in the note. An Obsidian view is a full browser surface, so all of that works inside the vault on desktop. The flat map is the fallback on mobile.</p>
@@ -553,6 +582,114 @@ scriv2obsidian convert -out ~/Writing -git Novel.scriv</pre>
   })();
 </script>
 
+
+<script>
+(function () {
+  var PLACES = {
+    house: { name: 'The house', kind: 'Place', aliases: 'Harrow Wood cottage',
+      images: [['i1', 'Cottage, Harrow Wood'], ['i4', 'Kitchen tin, sketch']],
+      scenes: [
+        ['Part One, ch. 1', 'The Letter', 'Mara found the letter in <mark>the house</mark> she had sworn not to enter again.'],
+        ['Part One, ch. 1', 'The Tin', 'The kitchen was the only room in <mark>the house</mark> her mother had ever kept warm.'],
+        ['Part One, ch. 3', 'Return', '<mark>The house</mark> is smaller than she remembers.'],
+        ['Part Two, ch. 5', 'The Inventory', 'They counted everything in <mark>the house</mark> twice, and the tin was not there.'],
+        ['Part Two, ch. 7', 'Ashes', 'What was left of <mark>the house</mark> fitted into the cart.']
+      ] },
+    chapel: { name: 'Chapel steps', kind: 'Place', aliases: 'St Hilda’s',
+      images: [['i2', 'Chapel steps, flood mark'], ['i3', 'Order of service, 1897']],
+      scenes: [
+        ['Part One, ch. 2', 'Flood', 'The water reached the <mark>chapel steps</mark> by nightfall.'],
+        ['Part One, ch. 4', 'Sunday', 'Reverend Ashe waited on the <mark>chapel steps</mark> with the letter in his coat.'],
+        ['Part Two, ch. 6', 'The Reading', 'Every name was read from the <mark>chapel steps</mark>, and hers was not among them.']
+      ] },
+    fair: { name: 'Winter Fair', kind: 'Place', aliases: 'the fairground, Saltback meadow',
+      images: [['i4', 'Fair handbill, 1897'], ['i1', 'Meadow below the Saltbacks']],
+      scenes: [
+        ['Part One, ch. 2', 'Winter Fair', 'Tom saw the tin on the stall at the <mark>Winter Fair</mark> and said nothing.'],
+        ['Part One, ch. 3', 'Buttons', 'Mara sold the buttons one at a time so the <mark>fair</mark> would not notice.'],
+        ['Part Two, ch. 8', 'Last Stall', 'The <mark>fairground</mark> was mud and rope by the time she came back for it.'],
+        ['Part Two, ch. 8', 'Tom, Again', 'He had kept the stall at the <mark>Winter Fair</mark> for eleven years for one reason.']
+      ] },
+    stillwater: { name: 'Stillwater crossing', kind: 'Place', aliases: 'the crossing',
+      images: [['i2', 'Stillwater, from the east bank']],
+      scenes: [
+        ['Part Two, ch. 6', 'Stillwater', 'The ferryman at <mark>Stillwater</mark> would not take the letter and would not say why.'],
+        ['Part Two, ch. 9', 'The Crossing', 'She paid for <mark>the crossing</mark> with the last of the buttons.']
+      ] }
+  };
+
+  function buildCard(place) {
+    var card = document.createElement('div'); card.className = 'pcard'; card.hidden = true;
+    var imgs = place.images.map(function (im) { return '<figure><div class="ph-img ' + im[0] + '"></div><figcaption>' + im[1] + '</figcaption></figure>'; }).join('');
+    card.innerHTML = '<div class="ph"><strong>' + place.name + '</strong><span>' + place.kind + ', ' + place.scenes.length + ' scenes. Also “' + place.aliases + '”</span>' +
+      '<input type="search" placeholder="Search scenes set here" aria-label="Search scenes set at ' + place.name + '"></div>' +
+      '<div class="imgs">' + imgs + '</div><ul></ul><div class="none" hidden>No scene matches.</div>';
+    var list = card.querySelector('ul'), none = card.querySelector('.none'), input = card.querySelector('input');
+    function render(q) {
+      q = (q || '').toLowerCase(); list.innerHTML = ''; var n = 0;
+      place.scenes.forEach(function (sc) {
+        var plain = (sc[0] + ' ' + sc[1] + ' ' + sc[2]).replace(/<[^>]+>/g, '').toLowerCase();
+        if (q && plain.indexOf(q) < 0) return;
+        n++;
+        var li = document.createElement('li');
+        li.innerHTML = '<div class="ch">' + sc[0] + '</div><div class="ti">' + sc[1] + '</div><div class="ex">' + sc[2] + '</div>';
+        list.appendChild(li);
+      });
+      none.hidden = n > 0;
+    }
+    input.addEventListener('input', function () { render(input.value); });
+    render('');
+    return card;
+  }
+
+  // attach to a container: pins are elements with data-place; returns a function to reposition the open card
+  function wire(container) {
+    var open = null, timer = null, pinned = false;
+    var cards = {};
+    function place(pinEl) {
+      var card = cards[pinEl.dataset.place];
+      var cw = container.clientWidth, ch = container.clientHeight;
+      var px = pinEl.offsetLeft, py = pinEl.offsetTop;      // pin anchor (bottom centre)
+      var w = card.offsetWidth || 304, h = card.offsetHeight || 300;
+      var left = px + 14, top = py - h / 2;
+      if (left + w > cw - 8) left = px - w - 14;
+      if (left < 8) left = 8;
+      if (top < 8) top = 8;
+      if (top + h > ch - 8) top = Math.max(8, ch - h - 8);
+      card.style.left = left + 'px'; card.style.top = top + 'px';
+    }
+    function show(pinEl) {
+      clearTimeout(timer);
+      if (open && open !== pinEl) hide(true);
+      open = pinEl; var card = cards[pinEl.dataset.place]; card.hidden = false; pinEl.classList.add('open'); place(pinEl);
+    }
+    function hide(force) {
+      if (!open) return; if (pinned && !force) return;
+      var card = cards[open.dataset.place]; card.hidden = true; open.classList.remove('open'); open = null; pinned = false;
+    }
+    function scheduleHide() { clearTimeout(timer); timer = setTimeout(function () { hide(false); }, 260); }
+    Array.prototype.forEach.call(container.querySelectorAll('.mpin[data-place]'), function (pinEl) {
+      var key = pinEl.dataset.place; if (!PLACES[key]) return;
+      if (!cards[key]) { cards[key] = buildCard(PLACES[key]); container.appendChild(cards[key]);
+        cards[key].addEventListener('mouseenter', function () { clearTimeout(timer); });
+        cards[key].addEventListener('mouseleave', scheduleHide);
+        cards[key].addEventListener('pointerdown', function (e) { e.stopPropagation(); });
+        cards[key].addEventListener('wheel', function (e) { e.stopPropagation(); }, { passive: true });
+      }
+      pinEl.addEventListener('mouseenter', function () { show(pinEl); });
+      pinEl.addEventListener('mouseleave', scheduleHide);
+      pinEl.addEventListener('focus', function () { show(pinEl); });
+      pinEl.addEventListener('blur', scheduleHide);
+      pinEl.addEventListener('pointerdown', function (e) { e.stopPropagation(); });
+      pinEl.addEventListener('click', function (e) { e.stopPropagation(); if (open === pinEl && pinned) { hide(true); } else { show(pinEl); pinned = true; } });
+    });
+    container.addEventListener('pointerdown', function () { hide(true); });
+    return function () { if (open) place(open); };
+  }
+  window.longhandWirePlaces = wire;
+  var flat = document.querySelector('.world'); if (flat) wire(flat);
+})();
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function () {
@@ -612,18 +749,18 @@ scriv2obsidian convert -out ~/Writing -git Novel.scriv</pre>
 
   // pins: normalised coordinates on the same map as the flat view
   var pins = [
-    { name: 'The house', x: -0.42, z: 0.30 },
-    { name: 'Chapel steps', x: -0.08, z: 0.46 },
-    { name: 'Winter Fair', x: 0.14, z: -0.02 },
-    { name: 'Stillwater crossing', x: 0.52, z: 0.12 }
+    { name: 'The house', key: 'house', x: -0.42, z: 0.30 },
+    { name: 'Chapel steps', key: 'chapel', x: -0.08, z: 0.46 },
+    { name: 'Winter Fair', key: 'fair', x: 0.14, z: -0.02 },
+    { name: 'Stillwater crossing', key: 'stillwater', x: 0.52, z: 0.12 }
   ];
   pins.forEach(function (p) {
     p.world = new THREE.Vector3(p.x * SIZE / 2, Math.max(0.5, height(p.x, p.z)) + 0.5, p.z * SIZE / 2);
-    var el = document.createElement('div'); el.className = 'mpin';
+    var el = document.createElement('div'); el.className = 'mpin'; el.dataset.place = p.key; el.tabIndex = 0;
     el.innerHTML = '<span class="tag">' + p.name + '</span><span class="stem"></span>';
-    el.addEventListener('click', function () { el.querySelector('.tag').style.borderColor = '#1E2432'; });
     pinLayer.appendChild(el); p.el = el;
   });
+  var repositionCard = window.longhandWirePlaces ? window.longhandWirePlaces(pinLayer) : function () {};
 
   // orbit
   var theta = -0.35, phi = 1.0, radius = 165, target = new THREE.Vector3(0, 3, 0);
@@ -654,6 +791,7 @@ scriv2obsidian convert -out ~/Writing -git Novel.scriv</pre>
       p.el.style.left = ((v.x + 1) / 2 * w) + 'px';
       p.el.style.top = ((1 - v.y) / 2 * h) + 'px';
     });
+    repositionCard();
     requestAnimationFrame(frame);
   }
   frame();
