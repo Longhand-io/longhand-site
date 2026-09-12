@@ -1,0 +1,25 @@
+<!doctype html><meta charset="utf-8">
+<style>
+body{margin:0;background:#F3F4F1;font-family:Georgia,serif;color:#1E2432;padding:24px}
+.row{display:flex;gap:28px;align-items:flex-end;margin-bottom:28px}
+.v{text-align:center}.v small{display:block;color:#676B72;margin-top:6px}
+.tile{width:96px;height:96px;border-radius:22px;background:#1E2432;display:inline-block}
+.dark{background:#1E2432;padding:16px;border-radius:8px}
+</style>
+<!-- A: cursive l loop, single stroke, round caps -->
+<div class="row">
+<div class="v"><svg width="160" height="160" viewBox="0 0 100 100"><path d="M14 80 C 36 64, 58 34, 60 14 C 61 6, 50 6, 48 18 C 45 40, 44 62, 46 76 C 47 86, 56 86, 62 78 C 68 71, 76 73, 86 80" fill="none" stroke="#1E2432" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg><small>A single stroke</small></div>
+<!-- B: nib contrast: thin upstroke, thick downstroke -->
+<div class="v"><svg width="160" height="160" viewBox="0 0 100 100"><path d="M14 80 C 36 64, 58 34, 60 14 C 61 7, 51 7, 49 17" fill="none" stroke="#1E2432" stroke-width="3" stroke-linecap="round"/><path d="M49 17 C 46 40, 44 62, 46 76 C 47 86, 56 86, 62 78" fill="none" stroke="#1E2432" stroke-width="10" stroke-linecap="round"/><path d="M62 78 C 68 71, 76 73, 86 80" fill="none" stroke="#1E2432" stroke-width="3" stroke-linecap="round"/></svg><small>B nib contrast</small></div>
+<!-- C: l loop crossing itself, taller, with a dot of ink at the exit -->
+<div class="v"><svg width="160" height="160" viewBox="0 0 100 100"><path d="M18 82 C 40 70, 60 40, 63 16 C 64 6, 52 5, 50 16 C 47 36, 45 58, 47 74 C 48 84, 58 86, 65 78 C 70 72, 76 74, 82 80" fill="none" stroke="#1E2432" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="86" cy="82" r="4.5" fill="#1E2432"/></svg><small>C loop and ink dot</small></div>
+<!-- D: two lines: an "l" loop and a baseline rule under it, like a ruled page -->
+<div class="v"><svg width="160" height="160" viewBox="0 0 100 100"><path d="M22 74 C 40 62, 58 36, 60 16 C 61 7, 50 7, 48 18 C 45 40, 44 58, 46 70" fill="none" stroke="#1E2432" stroke-width="8" stroke-linecap="round"/><path d="M12 84 H 88" stroke="#1E2432" stroke-width="3" stroke-linecap="round"/></svg><small>D loop on a rule</small></div>
+</div>
+<div class="row">
+<div class="v"><span class="tile"><svg width="96" height="96" viewBox="0 0 100 100"><path d="M18 78 C 38 64, 58 36, 60 16 C 61 8, 51 8, 49 18 C 46 40, 45 62, 47 76 C 48 86, 57 86, 63 78 C 69 71, 77 73, 86 80" fill="none" stroke="#F3F4F1" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><small>tile, ink</small></div>
+<div class="v"><span class="tile" style="background:#F3F4F1;border:1px solid #CFD2CC"><svg width="96" height="96" viewBox="0 0 100 100"><path d="M18 78 C 38 64, 58 36, 60 16 C 61 8, 51 8, 49 18 C 46 40, 45 62, 47 76 C 48 86, 57 86, 63 78 C 69 71, 77 73, 86 80" fill="none" stroke="#1E2432" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><small>tile, paper</small></div>
+<div class="v"><svg width="24" height="24" viewBox="0 0 100 100"><path d="M18 78 C 38 64, 58 36, 60 16 C 61 8, 51 8, 49 18 C 46 40, 45 62, 47 76 C 48 86, 57 86, 63 78 C 69 71, 77 73, 86 80" fill="none" stroke="#1E2432" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></svg><small>favicon 24px</small></div>
+<div class="v"><div style="display:flex;align-items:center;gap:10px;font-size:40px;font-weight:500;letter-spacing:-.01em"><svg width="44" height="44" viewBox="0 0 100 100"><path d="M18 78 C 38 64, 58 36, 60 16 C 61 8, 51 8, 49 18 C 46 40, 45 62, 47 76 C 48 86, 57 86, 63 78 C 69 71, 77 73, 86 80" fill="none" stroke="#1E2432" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>Longhand</div><small>lockup</small></div>
+<div class="v dark"><div style="display:flex;align-items:center;gap:10px;font-size:40px;font-weight:500;color:#F3F4F1"><svg width="44" height="44" viewBox="0 0 100 100"><path d="M18 78 C 38 64, 58 36, 60 16 C 61 8, 51 8, 49 18 C 46 40, 45 62, 47 76 C 48 86, 57 86, 63 78 C 69 71, 77 73, 86 80" fill="none" stroke="#F3F4F1" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>Longhand</div><small style="color:#aaa">lockup dark</small></div>
+</div>
