@@ -651,8 +651,9 @@ scriv2obsidian convert -out ~/Writing -git Novel.scriv</pre>
       var cw = container.clientWidth, ch = container.clientHeight;
       var px = pinEl.offsetLeft, py = pinEl.offsetTop;      // pin anchor (bottom centre)
       var w = card.offsetWidth || 304, h = card.offsetHeight || 300;
-      var left = px + 14, top = py - h / 2;
-      if (left + w > cw - 8) left = px - w - 14;
+      var half = (pinEl.offsetWidth || 0) / 2 + 12;
+      var left = px + half, top = py - h / 2;
+      if (left + w > cw - 8) left = px - half - w;
       if (left < 8) left = 8;
       if (top < 8) top = 8;
       if (top + h > ch - 8) top = Math.max(8, ch - h - 8);
