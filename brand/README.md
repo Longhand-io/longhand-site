@@ -48,6 +48,10 @@ Nib speaks in the second person, briefly, and only when asked or when it has som
 
 Plain verbs, sentence case, no exclamation marks. Say what the thing does, not how good it is. "Take snapshot", not "Snapshot now!". Name features by what a writer would call them: binder, snapshot, thread, corkboard, compile.
 
+## Ownership
+
+The names Longhand and Nib and the marks in this folder are trademarks of 0xSpectra LLC. The brand kit files may be used to refer to Longhand; see TRADEMARKS.md in the longhand repository for what that covers.
+
 ## Affiliation
 
 Longhand is independent. It is not affiliated with or endorsed by Literature & Latte, the makers of Scrivener, or by Obsidian. Do not use their logos in Longhand material.

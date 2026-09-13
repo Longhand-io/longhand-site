@@ -10,4 +10,4 @@ The plugin and spec live in [longhand](https://github.com/Longhand-io/longhand).
 
 Longhand is independent and not affiliated with or endorsed by Literature & Latte, the makers of Scrivener, or by Obsidian.
 
-Text and design: MIT. Logo files: may be used to refer to Longhand; do not use them to imply endorsement.
+Text and design: Apache License 2.0, copyright 0xSpectra LLC and the Longhand Authors. Logo files: trademarks of 0xSpectra LLC; use them to refer to Longhand, never to imply endorsement. See TRADEMARKS.md in the longhand repository.
