@@ -480,7 +480,7 @@
 
   <section class="feature">
     <h2>Pin a scene to a place.</h2>
-    <p>Any image can be a map: a hand-drawn world, a scanned town plan, a floor plan of the house. Drop a pin and link it to a place, a scene, or a character. A place is a note, like a character, so Longhand knows where it appears: hover a pin and you get the chapters and scenes set there, the line that names it, the images you pinned for inspiration, and a search box for when a place carries half the book. Click a scene to open it. Pins are stored on the map's own note, so the map is a picture with frontmatter.</p>
+    <p>Any image can be a map: a hand-drawn world, an Inkarnate export, a scanned town plan, a floor plan of the house, or a blank canvas. Drop a pin and link it to a place, a scene, or a character. Draw on top of it in the same ink as this page: woods, water, hills, roads, rivers, routes, and labels, clean or hand-drawn, with a small toolbar that works the way drawing apps do. A place is a note, like a character, so Longhand knows where it appears: hover a pin or a drawn region and you get the chapters and scenes set there, the line that names it, the images you pinned for inspiration, and a search box for when a place carries half the book. Click a scene to open it. Pins and drawings are stored on the map's own note as plain frontmatter, so the map is a picture with a readable list beside it, and Nib can read and write that list too.</p>
     <div class="panel" aria-label="World map, flat view">
       <div class="bar"><strong>Harrowmere</strong><span class="axis">View <span class="on">Flat</span><span>Relief</span></span></div>
       <div class="world">
@@ -564,6 +564,7 @@
       <div class="icon"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon points="28,10 50,10 50,60 39,76 28,60" fill="currentColor"/><circle cx="39" cy="44" r="3.5" fill="#FBFBF9"/><line x1="39" y1="47" x2="39" y2="62" stroke="#FBFBF9" stroke-width="3"/><path d="M28 86 H 86" stroke="currentColor" stroke-width="9" stroke-linecap="round"/></svg></div>
       <div>
         <p>Every studio has someone who knows where things are. Nib is Longhand's. It lives in the margin, knows your manuscript, and stays out of your prose. Ask it what changed in chapter four since the June draft, where Tom was last seen, which scenes still mention the tin after you cut it, or whether a synopsis still matches its scene. It answers from your files and your history, and anything it changes lands as an ordinary edit or a snapshot you can undo.</p>
+        <p>Half of Nib needs no model at all. Where someone was last seen, what is set at a place, who is in a scene, which places have no scene yet, how long a chapter is, where a note sits on a map: those are lookups over your files, and that half of Nib is open source, works offline, and ships with the plugin. The half that reads your prose is the hosted one.</p>
         <p>Nib is off until you turn it on. It runs on our hosted models with a subscription, or on your own key or a local model. It sends your manuscript nowhere you did not point it, and it reports nothing back to us. Nib is the one part of Longhand you pay for by the month, and it is the only part that ever will be a subscription.</p>
       </div>
     </div>
@@ -634,7 +635,7 @@ scriv2obsidian convert -out ~/Writing -git Novel.scriv</pre>
       </div>
       <div>
         <h3>The plugin</h3>
-        <p>In design and early development. The spec, the importer, the plugin core, and every module that touches your files are open source and will stay that way. Nib and two convenience modules are paid; nothing that guards your data ever will be.</p>
+        <p>In early development, and usable in a test vault. The importer is feature complete for its first release. The plugin core, the map with pins, place cards, and drawing, the New command, and Nib's offline answers build and pass their tests; nothing is published yet. The spec, the importer, the plugin core, and every module that touches your files are open source and will stay that way. Nib's hosted half and two convenience modules are paid; nothing that guards your data ever will be.</p>
         <p><a href="https://github.com/Longhand-io/longhand">Follow the repo</a> to hear when there is a build to try.</p>
       </div>
     </div>
